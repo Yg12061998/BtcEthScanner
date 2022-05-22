@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:focusable="true"
     android:clickable="true"
+    android:background="@color/design_default_color_on_primary"
     android:layout_height="match_parent">
 
     <include
@@ -13,7 +14,7 @@
         layout="@layout/layout_toolbar"/>
 
     <TextView
-        android:id="@+id/txt_start"
+        android:id="@+id/txt_address"
         style="@style/normal16blue"
         android:lineSpacingExtra="@dimen/dp_5"
         android:layout_width="wrap_content"

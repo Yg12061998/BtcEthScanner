@@ -39,7 +39,7 @@ class QRCodeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mBinding.toolbar.title.text = "QR Result"
-        resources.getString(R.string.qr_result, qrResult)
+        mBinding.txtAddress.text = resources.getString(R.string.qr_result, qrResult)
         setClickListeners()
     }
 
@@ -66,13 +66,12 @@ class QRCodeFragment : Fragment() {
     private fun shareAddress() {
         val sendIntent: Intent = Intent().apply {
             action = Intent.ACTION_SEND
-            putExtra(Intent.EXTRA_TEXT, QR_SCANNED_TYPE)
+            putExtra(Intent.EXTRA_TEXT, QR_SCANNED_RESULT)
             type = "text/plain"
         }
 
         val shareIntent = Intent.createChooser(sendIntent, null)
         startActivity(shareIntent)
     }
-
 
 }

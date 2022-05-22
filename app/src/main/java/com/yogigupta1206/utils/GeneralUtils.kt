@@ -1,6 +1,7 @@
 package com.yogigupta1206.utils
 
 import android.app.Activity
+import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.annotation.IdRes
@@ -46,11 +47,23 @@ fun View.hide() {
 
 fun validator(type: String, address:String): Boolean {
     if(type.contentEquals(BITCOIN)){
-
-
+        if(address.length in 25..34){
+            if(address[0].equals('1', true)){
+                val list = listOf<Char>('0','O','l','I')
+                val testString = address.filter { it !in list }
+                if(testString.length == address.length){
+                    return true
+                }
+            }
+        }
     }else{
-
-
+        if(address.startsWith("0x")){
+            val testString = address.substring(2).filter { it in '0'..'9' || it in 'a'..'f' || it in 'A'..'F'}
+            Log.d("address", "\n$testString\n$address")
+            if(testString.length == address.length-2){
+                return true
+            }
+        }
     }
     return false
 }
