@@ -6,31 +6,32 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.camera.core.Camera
 import androidx.camera.core.CameraSelector
+import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
-import androidx.camera.view.PreviewView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
-import androidx.lifecycle.LifecycleOwner
 import com.google.common.util.concurrent.ListenableFuture
 import com.yogigupta1206.btcethscanner.R
 import com.yogigupta1206.btcethscanner.databinding.ActivityMainBinding
-import com.yogigupta1206.utils.CALL_DEVELOPER
-import com.yogigupta1206.utils.CALL_REQUEST
-import com.yogigupta1206.utils.PERMISSION_REQUEST_CAMERA
-import java.util.concurrent.ExecutionException
-
+import com.yogigupta1206.utils.*
+import java.util.concurrent.ExecutorService
+import java.util.concurrent.Executors
+import java.util.concurrent.atomic.AtomicBoolean
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var mBinding: ActivityMainBinding
     private lateinit var cameraProviderFuture: ListenableFuture<ProcessCameraProvider>
+    private lateinit var cameraExecutor: ExecutorService
+    private var processingBarcode = AtomicBoolean(false)
+    private lateinit var cameraProvider: ProcessCameraProvider
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,9 +40,6 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(mBinding.toolbar)
         setOnNavigationItemSelectListener()
         setClickListeners()
-
-        cameraProviderFuture = ProcessCameraProvider.getInstance(this)
-        requestCamera()
     }
 
     private fun setClickListeners() {
@@ -167,29 +165,57 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun startCamera() {
+        mBinding.groupBtnInstructions.hide()
+        mBinding.previewView.show()
+
+        cameraExecutor = Executors.newSingleThreadExecutor()
+        cameraProviderFuture = ProcessCameraProvider.getInstance(this)
+
         cameraProviderFuture.addListener({
+            cameraProvider = cameraProviderFuture.get()
+            val preview = Preview.Builder().build().also {
+                it.setSurfaceProvider(
+                    mBinding.previewView.surfaceProvider
+                )
+            }
+
+            val imageAnalysis = ImageAnalysis.Builder()
+                .build()
+                .also {
+                    it.setAnalyzer(cameraExecutor, QRCodeImageAnalyzer { barcode ->
+                        if (processingBarcode.compareAndSet(false, true)) {
+                            openQrContent(barcode)
+                        }
+                    })
+                }
+
+            // Select back camera
+            val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
             try {
-                val cameraProvider = cameraProviderFuture.get()
-                bindCameraPreview(cameraProvider)
-            } catch (e: ExecutionException) {
-                Toast.makeText(this, "Error starting camera " + e.message, Toast.LENGTH_SHORT)
-                    .show()
-            } catch (e: InterruptedException) {
-                Toast.makeText(this, "Error starting camera " + e.message, Toast.LENGTH_SHORT)
-                    .show()
+                // Unbind any bound use cases before rebinding
+                cameraProvider.unbindAll()
+                // Bind use cases to lifecycleOwner
+                cameraProvider.bindToLifecycle(this, cameraSelector, preview, imageAnalysis)
+            } catch (e: Exception) {
+                Log.e("PreviewUseCase", "Binding failed! :(", e)
             }
         }, ContextCompat.getMainExecutor(this))
     }
 
-    private fun bindCameraPreview(cameraProvider: ProcessCameraProvider) {
-        mBinding.previewView.implementationMode = PreviewView.ImplementationMode.PERFORMANCE
-        mBinding.previewView.scaleType = PreviewView.ScaleType.FILL_CENTER
-        val preview: Preview = Preview.Builder().build()
-        val cameraSelector = CameraSelector.Builder()
-            .requireLensFacing(CameraSelector.LENS_FACING_BACK)
-            .build()
-        preview.setSurfaceProvider(mBinding.previewView.surfaceProvider)
-        val camera: Camera =
-            cameraProvider.bindToLifecycle(this as LifecycleOwner, cameraSelector, preview)
+
+
+    private fun openQrContent(qrCode: String?) {
+        stopCamera()
+        processingBarcode.compareAndSet(true, false)
+        Log.d(QRCodeImageAnalyzer::class.java.simpleName, "QR Code Found:\n$qrCode")
+        Toast.makeText(this@MainActivity, "QR Code Found:\n$qrCode", Toast.LENGTH_SHORT)
+            .show()
     }
+
+    private fun stopCamera() {
+        cameraProvider.unbindAll()
+        mBinding.previewView.hide()
+        mBinding.groupBtnInstructions.show()
+    }
+
 }
