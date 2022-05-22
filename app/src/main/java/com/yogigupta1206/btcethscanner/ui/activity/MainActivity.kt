@@ -20,6 +20,7 @@ import androidx.core.view.GravityCompat
 import com.google.common.util.concurrent.ListenableFuture
 import com.yogigupta1206.btcethscanner.R
 import com.yogigupta1206.btcethscanner.databinding.ActivityMainBinding
+import com.yogigupta1206.btcethscanner.ui.fragment.QRCodeFragment
 import com.yogigupta1206.utils.*
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
@@ -28,6 +29,7 @@ import java.util.concurrent.atomic.AtomicBoolean
 class MainActivity : AppCompatActivity() {
 
     private lateinit var mBinding: ActivityMainBinding
+    private var barcodeType = ETHEREUM
     private lateinit var cameraProviderFuture: ListenableFuture<ProcessCameraProvider>
     private lateinit var cameraExecutor: ExecutorService
     private var processingBarcode = AtomicBoolean(false)
@@ -44,11 +46,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun setClickListeners() {
         mBinding.btnBtc.setOnClickListener {
-
+            barcodeType = BITCOIN
+            requestCamera()
         }
 
         mBinding.btnEth.setOnClickListener {
-
+            barcodeType = ETHEREUM
+            requestCamera()
         }
     }
 
@@ -207,9 +211,19 @@ class MainActivity : AppCompatActivity() {
     private fun openQrContent(qrCode: String?) {
         stopCamera()
         processingBarcode.compareAndSet(true, false)
-        Log.d(QRCodeImageAnalyzer::class.java.simpleName, "QR Code Found:\n$qrCode")
-        Toast.makeText(this@MainActivity, "QR Code Found:\n$qrCode", Toast.LENGTH_SHORT)
-            .show()
+
+        val qrCodeFragment = QRCodeFragment()
+        val bundle = Bundle()
+        bundle.putString(QR_SCANNED_RESULT, qrCode )
+        bundle.putString(QR_SCANNED_TYPE, barcodeType)
+
+        qrCodeFragment.arguments = bundle
+
+        addReplaceFragment(R.id.container, qrCodeFragment ,
+            addFragment = true,
+            addToBackStack = true
+        )
+
     }
 
     private fun stopCamera() {
