@@ -304,6 +304,7 @@
     <dimen name="dp_298" tools:keep="@dimen/dp_298">298dp</dimen>
     <dimen name="dp_299" tools:keep="@dimen/dp_299">299dp</dimen>
     <dimen name="dp_300">300dp</dimen>
+    <dimen name="dp_350">350dp</dimen>
     <dimen name="dp_380">380dp</dimen>
     <dimen name="dp_400">400dp</dimen>
     <dimen name="dp_500">500dp</dimen>
