@@ -9,13 +9,12 @@
     <color name="black_700">#B3000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="blue_dark">#2196F3</color>
     <color name="disable">#DADADA</color>
     <color name="list_background">#DADADA</color>
     <color name="ripple_gray">#333333</color>
     <color name="ripple">#999999</color>
-    <color name="indigo">#584cd2</color>
     <color name="spring_green">#0dfcaa</color>
+    <color name="spring_green_24">#3d0dfcaa</color>
     <color name="picton_blue">#4ab1f4</color>
     <color name="indigo_10">#ebe4f4</color>
 

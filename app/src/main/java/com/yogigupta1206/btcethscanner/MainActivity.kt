@@ -3,15 +3,13 @@ package com.yogigupta1206.btcethscanner
 import android.app.AlertDialog
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import com.yogigupta1206.btcethscanner.databinding.ActivityMainBinding
 import com.yogigupta1206.utils.CALL_DEVELOPER
 import com.yogigupta1206.utils.CALL_REQUEST
-import com.yogigupta1206.utils.addReplaceFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,6 +26,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setClickListeners() {
+        mBinding.btnBtc.setOnClickListener {
+
+        }
+
+        mBinding.btnEth.setOnClickListener {
+
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

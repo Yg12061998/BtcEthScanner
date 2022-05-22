@@ -25,22 +25,22 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
+            android:background="@drawable/bg_fragment"
             app:contentInsetLeft="0dp"
             app:contentInsetStart="0dp"
-            android:background="@drawable/bg_fragment"
             app:contentInsetStartWithNavigation="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:navigationIcon="@drawable/ic_menu"
             app:title="@string/app_name"
-            app:titleTextColor="@color/white"
-            app:titleTextAppearance="@style/Toolbar.TitleText">
+            app:titleTextAppearance="@style/Toolbar.TitleText"
+            app:titleTextColor="@color/white">
 
             <RelativeLayout
-                android:layout_marginEnd="@dimen/dp_50"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dp_50">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
@@ -56,6 +56,44 @@
 
         </androidx.appcompat.widget.Toolbar>
 
+        <Button
+            android:id="@+id/btnBtc"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="BTC"
+            app:layout_constraintBottom_toTopOf="@id/btnEth"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:rippleColor="@color/spring_green_24"
+            app:strokeColor="@color/picton_blue" />
+
+        <Button
+            android:id="@+id/btnEth"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ETH"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:rippleColor="@color/spring_green_24"
+            app:strokeColor="@color/picton_blue" />
+
+        <TextView
+            android:layout_marginTop="@dimen/dp_92"
+            android:id="@+id/txt_start"
+            style="@style/normal16blue"
+            android:lineSpacingExtra="@dimen/dp_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/instructions"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/btnBtc"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.navigation.NavigationView
@@ -65,21 +103,22 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/fragment_navigation_header"
-        app:menu="@menu/navigation_drawer_menu_item" >
+        app:menu="@menu/navigation_drawer_menu_item">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:clickable="true"
-            android:orientation="vertical"
-            android:focusable="true">
+            android:focusable="true"
+            android:orientation="vertical">
+
             <TextView
                 android:id="@+id/versionName"
+                style="@style/bold16blue"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_48"
                 android:gravity="center"
-                style="@style/bold16indigo"
                 android:text="@string/thanks" />
 
         </LinearLayout>
