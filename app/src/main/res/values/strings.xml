@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">Btc Eth Scanner</string>
+    <string name="developer_name">Yogesh Gupta</string>
+    <string name="show_profiles">Show Profiles</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="view_more">View More</string>
+    <string name="exit">Exit</string>
+    <string name="cancel">Cancel</string>
+    <string name="call">Call Developer</string>
+    <string name="thanks">Thanks for using!</string>
+    <string name="exit_confirm">Exit Confirm!</string>
+    <string name="are_you_sure_you_want_to_exit">Are you sure you want to exit?</string>
+    <string name="fragment_title">Robby Darling</string>
+    <string name="profile_clicked">%s clicked!</string>
+    <string name="instructions">Hello User! \n\n1. Top left Corner has <b>Menu</b> Icon\n\t\t\ta. <b>Call Developer</b> opens developer number.\n\t\t\tb. <b>Exit</b> button close the Application.\n2. <b>Show Profiles</b> Button will show Profiles list.</string>
+
 </resources>

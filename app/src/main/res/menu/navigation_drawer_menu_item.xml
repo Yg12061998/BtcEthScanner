@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group
+        android:checkableBehavior="single"
+        android:enabled="true">
+
+        <item
+            android:id="@+id/menu_call_support"
+            android:icon="@drawable/ic_baseline_call_24"
+            android:title="@string/call" />
+        <item
+            android:id="@+id/menu_item_exit"
+            android:icon="@drawable/ic_exit"
+            android:title="@string/exit" />
+
+    </group>
+</menu>
