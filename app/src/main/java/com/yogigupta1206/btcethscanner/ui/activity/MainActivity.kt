@@ -1,4 +1,4 @@
-package com.yogigupta1206.btcethscanner
+package com.yogigupta1206.btcethscanner.ui.activity
 
 import android.Manifest
 import android.app.AlertDialog
@@ -19,6 +19,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.lifecycle.LifecycleOwner
 import com.google.common.util.concurrent.ListenableFuture
+import com.yogigupta1206.btcethscanner.R
 import com.yogigupta1206.btcethscanner.databinding.ActivityMainBinding
 import com.yogigupta1206.utils.CALL_DEVELOPER
 import com.yogigupta1206.utils.CALL_REQUEST
