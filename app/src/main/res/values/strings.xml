@@ -12,7 +12,7 @@
     <string name="are_you_sure_you_want_to_exit">Are you sure you want to exit?</string>
     <string name="fragment_title">Robby Darling</string>
     <string name="profile_clicked">%s clicked!</string>
-    <string name="instructions">Hello User! \n\n1. Top left Corner has <b>Menu</b> Icon\n\t\t\ta. <b>Call Developer</b> opens developer number.\n\t\t\tb. <b>Exit</b> button close the Application.\n2. <b>Show Profiles</b> Button will show Profiles list.</string>
+    <string name="instructions">Hello User! \n\n1. Top left Corner has <b>Menu</b> Icon\n\t\t\ta. <b>Call Developer</b> opens developer number.\n\t\t\tb. <b>Exit</b> button close the Application.\n2. <b>BTC</b> to scan Bitcoin Address.\n3. <b>ETH</b> to scan Ethereum Address.\n4. After scanning two option is visible.\n\t\ta.<b>Validate</b> to check address is valid or invalid.\n\t\tb.<b>Share</b> to share address</string>
     <string name="qr_result">Address:\n%s</string>
 
 </resources>

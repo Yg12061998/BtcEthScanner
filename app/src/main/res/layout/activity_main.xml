@@ -67,35 +67,11 @@
 
         </androidx.appcompat.widget.Toolbar>
 
-        <Button
-            android:id="@+id/btnBtc"
-            style="?attr/materialButtonOutlinedStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="BTC"
-            app:layout_constraintBottom_toTopOf="@+id/btnEth"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:rippleColor="@color/spring_green_24"
-            app:strokeColor="@color/picton_blue" />
-
-        <Button
-            android:id="@+id/btnEth"
-            style="?attr/materialButtonOutlinedStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ETH"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:rippleColor="@color/spring_green_24"
-            app:strokeColor="@color/picton_blue" />
-
         <TextView
+            android:layout_marginTop="@dimen/dp_28"
             android:id="@+id/txt_start"
             style="@style/normal16blue"
-            android:lineSpacingExtra="@dimen/dp_5"
+            android:lineSpacingExtra="@dimen/dp_8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/instructions"
@@ -103,6 +79,34 @@
             app:layout_constraintBottom_toTopOf="@id/btnBtc"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
+
+        <Button
+            android:layout_marginTop="@dimen/dp_98"
+            android:id="@+id/btnBtc"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="BTC"
+            android:layout_marginHorizontal="@dimen/dp_18"
+            app:layout_constraintTop_toBottomOf="@id/txt_start"
+            app:layout_constraintEnd_toStartOf="@id/btnEth"
+            app:layout_constraintStart_toStartOf="parent"
+            app:rippleColor="@color/spring_green_24"
+            app:strokeColor="@color/picton_blue" />
+
+        <Button
+            android:id="@+id/btnEth"
+            android:layout_marginHorizontal="@dimen/dp_18"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="ETH"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btnBtc"
+            app:layout_constraintTop_toTopOf="@id/btnBtc"
+            app:layout_constraintBottom_toBottomOf="@id/btnBtc"
+            app:rippleColor="@color/spring_green_24"
+            app:strokeColor="@color/picton_blue" />
 
         <androidx.constraintlayout.widget.Group
             android:id="@+id/groupBtnInstructions"
