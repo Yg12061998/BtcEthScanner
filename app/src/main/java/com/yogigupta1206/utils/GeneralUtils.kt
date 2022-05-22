@@ -43,3 +43,14 @@ fun View.show() {
 fun View.hide() {
     visibility = View.GONE
 }
+
+fun validator(type: String, address:String): Boolean {
+    if(type.contentEquals(BITCOIN)){
+
+
+    }else{
+
+
+    }
+    return false
+}

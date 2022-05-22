@@ -73,7 +73,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="BTC"
-            app:layout_constraintBottom_toTopOf="@id/btnEth"
+            app:layout_constraintBottom_toTopOf="@+id/btnEth"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:rippleColor="@color/spring_green_24"
@@ -93,14 +93,13 @@
             app:strokeColor="@color/picton_blue" />
 
         <TextView
-            android:layout_marginTop="@dimen/dp_92"
             android:id="@+id/txt_start"
             style="@style/normal16blue"
             android:lineSpacingExtra="@dimen/dp_5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/instructions"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
             app:layout_constraintBottom_toTopOf="@id/btnBtc"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
