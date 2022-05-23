@@ -59,8 +59,7 @@ fun validator(type: String, address:String): Boolean {
     }else{
         if(address.startsWith("0x")){
             val testString = address.substring(2).filter { it in '0'..'9' || it in 'a'..'f' || it in 'A'..'F'}
-            Log.d("address", "\n$testString\n$address")
-            if(testString.length == address.length-2){
+            if(testString.length == address.substring(3).length){
                 return true
             }
         }

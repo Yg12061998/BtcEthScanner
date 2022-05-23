@@ -66,7 +66,7 @@ class QRCodeFragment : Fragment() {
     private fun shareAddress() {
         val sendIntent: Intent = Intent().apply {
             action = Intent.ACTION_SEND
-            putExtra(Intent.EXTRA_TEXT, QR_SCANNED_RESULT)
+            putExtra(Intent.EXTRA_TEXT, qrResult)
             type = "text/plain"
         }
 
