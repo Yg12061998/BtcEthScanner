@@ -14,3 +14,8 @@ It is an Demo Android App which uses ML Kit and CameraX Libarary to scan QR/Bar 
 4. After scanning two option is visible.<br>
   a. **Validate** to check address is valid or invalid.<br>
   b. **Share** to share BTC/ETH address.
+
+## Demo
+
+
+  [![https://youtu.be/ApH8bzODupg](http://img.youtube.com/vi/ApH8bzODupg/0.jpg)](http://www.youtube.com/watch?v=ApH8bzODupg)
